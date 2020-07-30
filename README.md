@@ -39,9 +39,9 @@ cd ~/.ao-libre-linux
 sh ./run.sh
 ```
 
-#### Actualización del cliente
+#### Actualización
 
-El cliente va a actualizar automáticamente a la versión correspondiente al iniciar con el script run.sh
+El cliente se actualiza automáticamente a la versión correspondiente al iniciar con el script `run.sh`.
 
 #### Inspección
 
@@ -78,11 +78,13 @@ Launcher:
 Si tira un error de SECUR32 prueben reinstalando el paquete winbind.
 
 ```shell
-sudo apt install --reinstall winbind
+sudo apt-get install --reinstall winbind
+```
 
 o
 
-sudo apt remove winbind; sudo apt install winbind
+```shell
+sudo apt-get remove --purge winbind && sudo apt-get install winbind
 ```
 
 Si tienen que instalar o reinstalar alguna dependencia, por favor reinstalen wine de nuevo (tiende a fallar sino)
@@ -90,12 +92,10 @@ Si tienen que instalar o reinstalar alguna dependencia, por favor reinstalen win
 **Nota:**
 Para testing en otras distribiciones, además las listadas en `dependencies.sh` (en su mayoría librerías 32bits), se tienen que tener en cuenta las siguientes dependencias:
 
-- `winehq-stable`
 - `wine-stable`
-- `wine-stable-amd64`
-- `wine-stable-i386`
-- `gecko`
-- `mono`
+- `wine-stable:i386` o `wine-stable-i386`
+- `gecko` (WINE)
+- `mono` (WINE)
 
 La configuración de WINE, la instalación del cliente y su configuración son distro-agnósticas.
 
@@ -103,8 +103,7 @@ La configuración de WINE, la instalación del cliente y su configuración son d
 
 - [ ] Testear otras distros
 - [ ] Testear VMs
-- [ ] Testear LiveUSB
-- [ ] Reemplazar repositorio de WINE por repositorios oficiales
+- [x] Reemplazar repositorio de WINE por repositorios oficiales
 - [ ] Generar Desktop File
 - [ ] Reducir el User Input al mínimo posible
 - [ ] Reducir las descargas de dependencias al mínimo posible
