@@ -25,11 +25,11 @@ readonly args="WINEDEBUG=fixme-all WINEPREFIX=${prefix_ao}"
 ## GECKO (IE) Y MONO (.NET) PARA WINE
 
 if [ ! -e "${HOME}/.cache/wine/wine-mono-${monov}-x86.msi" ]; then
-    wget -P "${prefixcache}" "${urlmono}"
+    wget -q --show-progress -P "${prefixcache}" "${urlmono}"
 fi
 
 if [ ! -e "${HOME}/.cache/wine/wine-gecko-${geckov}-x86.msi" ]; then
-    wget -P "${prefixcache}" "${urlgecko}"
+    wget -q --show-progress -P "${prefixcache}" "${urlgecko}"
 fi
 
 cp "${prefixcache}/wine-mono-${monov}-x86.msi" "${prefixshare}/mono"

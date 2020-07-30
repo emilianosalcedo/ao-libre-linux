@@ -50,14 +50,14 @@ chmod 755 -R "${prefix_waol}"
 ## REGISTROS
 #######################################
 
-cat <<EOF > "${prefix_waol}/ao_winxp.reg"
+cat <<EOF > "${prefix_waol}/ao_win7.reg"
 Windows Registry Editor Version 5.00
 
 
 
 [HKEY_CURRENT_USER\Software\Wine\AppDefaults\Argentum.exe]
 
-"Version"="winxp"
+"Version"="win7"
 
 
 
@@ -70,7 +70,7 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Software\Wine\AppDefaults\Argentum.exe\Direct3D]
 
-"DirectDrawRenderer"="gdi"
+"DirectDrawRenderer"="opengl"
 
 
 
@@ -104,7 +104,7 @@ Windows Registry Editor Version 5.00
 "*vcomp120"="native,builtin"
 EOF
 
-wine_ao regedit "${prefix_waol}/ao_winxp.reg"
+wine_ao regedit "${prefix_waol}/ao_win7.reg"
 wine_ao regedit "${prefix_waol}/d3dopengl.reg"
 wine_ao regedit "${prefix_waol}/dlloverrides.reg"
 { [ "${vmcheck}" = "VirtualBox" ] || [ "${vmcheck}" = "VMWare Virtual Platform" ]; } && winets_ao videomemorysize=512
