@@ -1,4 +1,4 @@
-![Logo](resources/ao-libre-linux-banner.png)
+![Logo](resources/.ao-libre-linux-banner.png)
 
 ## Uso
 

@@ -1,35 +1,22 @@
 #!/bin/sh
 
-distro=$(head -n 1 /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
-version=$(grep "VERSION_ID" /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
-codename=$(grep "VERSION_CODENAME" /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
-libaud32deb="libfaudio0_20.01-0~buster_i386.deb"
-libaud64deb="libfaudio0_20.01-0~buster_amd64.deb"
-libaud32ub="libfaudio0_19.07-0~bionic_i386.deb"
-libaud64ub="libfaudio0_19.07-0~bionic_amd64.deb"
+#######################################
+## CONSTANTES
+#######################################
 
-#  Para Debian:
-#  wget "https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/i386/${libaud32deb}"
-#  wget "https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/amd64/${libaud64deb}"
+readonly distro=$(head -n 1 /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
+readonly version=$(grep "VERSION_ID" /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
+readonly codename=$(grep "VERSION_CODENAME" /etc/os-release | cut -d "=" -f 2 | cut -d \" -f 2)
 
+#######################################
+## MAIN
+#######################################
 
 if [ "${distro}" = "Ubuntu" ] || [ "${distro}" = "KDE neon" ]; then
 
-    sudo dpkg --add-architecture i386
-    wget -O - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-    echo "deb https://dl.winehq.org/wine-builds/ubuntu/ ${codename} main" | sudo tee -a /etc/apt/sources.list
-
-    if [ "${version}" = "18.04" ] || [ "${version}" = "16.04" ]; then
-
-        wget "https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/${libaud32ub}"
-        wget "https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/${libaud64ub}"        
- 
-        sudo dpkg -i "${libaudio32ub}"
-        sudo dpkg -i "${libaudio64ub}"
-    fi
-
-    sudo apt-get update
-    sudo apt-get install -y winehq-stable wine-stable wine-stable-amd64 wine-stable-i386 \
+    sudo apt-get update && sudo apt-get install -y 
+        winehq-stable \
+        winehq-stable:i386 \
         winetricks \
         gcc-multilib \
         cabextract \
@@ -49,7 +36,6 @@ if [ "${distro}" = "Ubuntu" ] || [ "${distro}" = "KDE neon" ]; then
         libxml2-dev:i386 \
         libncurses-dev:i386 \
         libncurses5:i386 \
-        libfaudio-dev:i386 \
         libgstreamer1.0-dev:i386 \
         libmpg123-0:i386 \
         libmpg123-dev:i386 \
@@ -91,6 +77,8 @@ if [ "${distro}" = "Ubuntu" ] || [ "${distro}" = "KDE neon" ]; then
         libdatrie1:i386 \
         libatk1.0-0:i386 \
         libltdl7:i386 \
+        libfaudio-dev:i386 \
+        libfaudio0:i386 \
         gstreamer1.0-plugins-good:i386 \
         gstreamer1.0-plugins-bad:i386 \
         gstreamer1.0-plugins-ugly:i386 \
