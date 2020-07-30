@@ -36,7 +36,8 @@ winets_ao() {
 
 [ ! -d "${workdir}" ] && mkdir -p "${workdir}"
 [ ! -d "${prefix_waol}" ] && mkdir -p "${prefix_waol}"
-[ ! -e "${workdir}/aolibre-installer-${launchv}.exe" ] && wget -q --show-progress -P "${workdir}" "${launchurl}/${launchv}/aolibre-installer-${launchv}.exe"
+[ ! -e "${workdir}/aolibre-installer-${launchv}.exe" ] && \
+    wget -q --show-progress -P "${workdir}" "${launchurl}/${launchv}/aolibre-installer-${launchv}.exe"
 [ ! -e "${workdir}/${patchv}.zip" ] && wget -q --show-progress -P "${workdir}" "${patchurl}/${patchv}/${patchv}.zip"
 
 wine_ao "${workdir}/aolibre-installer-${launchv}.exe"
