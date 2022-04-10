@@ -34,8 +34,7 @@ sh -c "$(wget -O - https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/mast
 
 ```shell
 git clone https://github.com/RenxoAr/ao-libre-linux.git ~/.ao-libre-linux
-cd ~/.ao-libre-linux
-sh ./install.sh
+sh ~/.ao-libre-linux/install.sh
 ```
 
 ### Post-instalación
