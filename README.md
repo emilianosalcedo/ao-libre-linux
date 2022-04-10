@@ -16,7 +16,7 @@
 + `curl` o `wget`
 + `git`
 
-### Instruccciones
+### Instrucciones
 
 #### Con `curl`
 
@@ -69,7 +69,7 @@ Los scripts van a instalar todas las dependencias, el launcher y el cliente de _
 Al preguntar por la instalación de `Mono` y `Gecko` aceptar (es necesario para ejecutar el cliente).
 Una vez finalizada la instalación se inicia el cliente.
 
-Todo el contenido del repositorio que se descarga se encuentra en: `~/.ao-libre-linux` por defecto si se ejecuta como lo indicado en [Instrucciones](https://github.com/emilianosalcedo/ao-libre-linux#Instrucciones).
+Todo el contenido del repositorio que se descarga se encuentra en: `~/.ao-libre-linux` por defecto si se ejecuta como lo indicado en [Instrucciones](#Instrucciones).
 
 Para purgar la instalación (luego de desinstalar) de Argentum Online Libre: `rm -rf ~/.wine/wineprefix/Argentum`
 
