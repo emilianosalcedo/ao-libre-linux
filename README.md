@@ -47,7 +47,7 @@ sh ~/.ao-libre-linux/run.sh
 
 ### Actualización del cliente
 
-El cliente va a actualizar automáticamente a la versión correspondiente al ejecutarse con el script `run.sh`
+El cliente va a actualizar automáticamente a la versión correspondiente al ejecutarse con el script `run.sh`.
 
 ### Inspección
 
