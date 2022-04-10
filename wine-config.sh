@@ -13,17 +13,17 @@ urlgecko="http://dl.winehq.org/wine/wine-gecko/${geckov}/wine-gecko-${geckov}-x8
 [ ! -d "${HOME}/.wine" ] && mkdir "${HOME}/.wine"
 [ ! -d "${prefix}" ] && mkdir -p "${prefix}"
 [ ! -d "${prefix_ao}" ] && mkdir -p "${prefix_ao}"
-( [ ! -d "${prefixshare}/mono" ] && [ ! -d "${prefixshare}/gecko" ] ) && mkdir -p "${prefixshare}/"{mono,gecko}
+{ [ ! -d "${prefixshare}/mono" ] && [ ! -d "${prefixshare}/gecko" ]; } && mkdir -p "${prefixshare}/"{mono,gecko}
 
 ## GECKO (IE) Y MONO (.NET) PARA WINE
-if [ ! -e "${HOME}/.cache/wine/wine-mono-${monov}-x86.msi" ]; then
-    wget -P "${prefixcache}" "${urlmono}"
-fi
+dl() {
+  if [ ! -e "${1}" ]; then
+    wget -P "${2}" "${3}"
+  fi
+}
 
-if [ ! -e "${HOME}/.cache/wine/wine-gecko-${geckov}-x86.msi" ]; then
-    wget -P "${prefixcache}" "${urlgecko}"
-fi
-
+dl "${HOME}/.cache/wine/wine-mono-${monov}-x86.msi" "${prefixcache}" "${urlmono}"
+dl "${HOME}/.cache/wine/wine-gecko-${geckov}-x86.msi" "${prefixcache}" "${urlgecko}"
 cp "${prefixcache}/wine-mono-${monov}-x86.msi" "${prefixshare}/mono"
 cp "${prefixcache}/wine-gecko-${geckov}-x86.msi" "${prefixshare}/gecko"
 

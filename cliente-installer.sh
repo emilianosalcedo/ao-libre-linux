@@ -8,21 +8,20 @@ prefixS32="${prefix_ao}/drive_c/windows/system32"
 prefixC="${prefix_ao}/drive_c"
 patchurl="https://github.com/ao-libre/ao-cliente/releases/download"
 launchurl="https://github.com/ao-libre/ao-autoupdate/releases/download"
-patchv="$(wget -q -O - 'https://github.com/ao-libre/ao-cliente/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1)"
-launchv="$(wget -q -O - 'https://github.com/ao-libre/ao-autoupdate/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1)"
+patchv="$(wget -q -O - 'https://github.com/ao-libre/ao-cliente/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1 | sed 's/\&quot.*//g')"
+launchv="$(wget -q -O - 'https://github.com/ao-libre/ao-autoupdate/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1 | sed 's/\&quot.*//g')"
 vmcheck="$(cat /sys/class/dmi/id/product_name)"
 
-# Simplifico las llamadas a wine y winetricks
+## SIMPLIFICO LAS LLAMADAS A WINE Y WINETRICKS
 wine_ao () {
-  WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine $*
+  WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine "${*}"
 }
 
 winets_ao () {
-  WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" winetricks -q $*
+  WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" winetricks -q "${*}"
 }
 
 ## INSTALACION
-
 [ ! -e "aolibre-installer-${launchv}.exe" ] && wget "${launchurl}/${launchv}/aolibre-installer-${launchv}.exe"
 [ ! -e "${patchv}.zip" ] && wget "${patchurl}/${patchv}/${patchv}.zip"
 [ ! -d "${prefix_waol}" ] && mkdir -p "${prefix_waol}"
@@ -35,33 +34,24 @@ unzip -q -o "${patchv}.zip" -d "${prefix_waol}"
 chmod 755 -R "${prefix_waol}"
 
 ## REGISTROS
-
 cat <<EOF > "${prefix_waol}/ao_winxp.reg"
 Windows Registry Editor Version 5.00
-
-
 
 [HKEY_CURRENT_USER\Software\Wine\AppDefaults\Argentum.exe]
 
 "Version"="winxp"
-
-
-
 EOF
 
+## OPENGL / DIRECT3D
 cat <<EOF > "${prefix_waol}/d3dopengl.reg"
 Windows Registry Editor Version 5.00
-
-
 
 [HKEY_CURRENT_USER\Software\Wine\AppDefaults\Argentum.exe\Direct3D]
 
 "DirectDrawRenderer"="opengl"
-
-
-
 EOF
 
+## LIBRERIAS
 cat <<EOF > "${prefix_waol}/dlloverrides.reg"
 Windows Registry Editor Version 5.00
 
@@ -93,4 +83,4 @@ EOF
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/ao_winxp.reg"
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/d3dopengl.reg"
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/dlloverrides.reg"
-[ "${vmcheck}" = "VirtualBox" ] && winets_ao videomemorysize=512 # Memoria de video de la VM
+[ "${vmcheck}" = "VirtualBox" ] && winets_ao videomemorysize=512 # MEMORIA DE VIDEO DE LA VM
