@@ -21,20 +21,20 @@
 #### Con `curl`
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/install.sh)"
 ```
 
 #### Con `wget`
 
 ```shell
-sh -c "$(wget -O - https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/install.sh)"
+sh -c "$(wget -O - https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/install.sh)"
 ```
 
 #### Manual
 
 ```shell
 git clone https://github.com/RenxoAr/ao-libre-linux.git ~/.ao-libre-linux
-sh ~/.ao-libre-linux/install.sh
+sh ~/.ao-libre-linux/src/install.sh
 ```
 
 ### Post-instalación
@@ -42,7 +42,7 @@ sh ~/.ao-libre-linux/install.sh
 Si se desea correr Argentum Online Libre en cualquier momento luego de la instalación puede hacerse de esta manera:
 
 ```shell
-sh ~/.ao-libre-linux/run.sh
+sh ~/.ao-libre-linux/src/run.sh
 ```
 
 ### Actualización del cliente
@@ -55,11 +55,11 @@ Es aconsejable inspeccionar los scripts de fuentes que uno desconoce antes de ej
 Pueden verificarlos de la siguiente manera:
 
 ```shell
-curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/install.sh | less
-curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/dependencies.sh | less
-curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/run.sh | less
-curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/wine-config.sh | less
-curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/cliente-installer.sh | less
+curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/install.sh | less
+curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/dependencies.sh | less
+curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/run.sh | less
+curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/wine-config.sh | less
+curl -Ls https://raw.githubusercontent.com/RenxoAr/ao-libre-linux/master/src/cliente-installer.sh | less
 ```
 
 ### Consideraciones
