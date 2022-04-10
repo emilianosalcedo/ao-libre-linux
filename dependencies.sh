@@ -9,7 +9,8 @@ libaud32ub="libfaudio0_19.07-0~bionic_i386.deb"
 libaud64ub="libfaudio0_19.07-0~bionic_amd64.deb"
 wine_ver_32="https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/i386/${libaud32ub}"
 wine_ver_64="https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/xUbuntu_18.04/amd64/${libaud64ub}"
-deps="./packages.lst"
+deps_debian="./packages-debian.lst"
+deps_arch="./packages-arch.lst"
 
 ##  PARA DEBIAN:
 ##  wine_ver_32="https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/i386/${libaud32deb}"
@@ -28,9 +29,9 @@ if [ "${distro}" = "Ubuntu" ] || [ "${distro}" = "KDE neon" ]; then
   fi
 
   sudo apt-get update
-  xargs -a "${deps}" sudo apt-get install -y
-elif [ -z "${distro}" ]; then
-  return
+  xargs -a "${deps_debian}" sudo apt-get install -y
+elif [ "${distro}" = "Manjaro" ]; then
+  xargs -a "${deps_arch}" sudo pacman -S --needed 
 else
   exit 0
 fi
