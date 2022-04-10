@@ -5,12 +5,12 @@ prefix_waol="${prefix}/Argentum/drive_c/Program Files/Argentum Online Libre/Laun
 prefix_ao="${prefix}/Argentum"
 patchv="$(wget -q -O - 'https://github.com/ao-libre/ao-cliente/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1 | sed 's/\&quot.*//g')"
 patchurl="https://github.com/ao-libre/ao-cliente/releases/download"
-aogitv="$(printf "%s\n"  $patchv | tr -d 'v.')"
+aogitv="$(printf "%s\n"  "${patchv}" | tr -d 'v.')"
 aolocalv="$(grep 'VERSIONTAGRELEASE' "${prefix_waol}/INIT/Config.ini" | tr -d 'VERSIONTAGLA=v.''\n''\r''\t'' ')"
 
 ## FUNCIONES PARA INICIAR/INSTALAR CLIENTE
 iniciar_cliente () {
-  printf "%s\n"  "Iniciando el cliente ..."
+  printf "%s\n"  "INICIANDO EL CLIENTE..."
   WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" WINEDEBUG=heap+all wine "${prefix_waol}/Argentum.exe"
 }
 
@@ -18,7 +18,7 @@ instalar_cliente () {
   [ ! -e "${patchv}.zip" ] && wget "${patchurl}/${patchv}/${patchv}.zip"
   unzip -q -o "${patchv}.zip" -d "${prefix_waol}"
   chmod 755 -R "${prefix_waol}"
-  printf "%s\n"  "Instalación finalizada."
+  printf "%s\n"  "INSTALACIÓN FINALIZADA."
 }
 
 ## COMPRUEBO LA VERSIÓN. SOLO ARRANCA SI ES LA CORRECTA, EN TODOS LOS DEMAS CASOS (POR AHORA) REINSTALA.

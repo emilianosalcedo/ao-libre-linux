@@ -9,6 +9,7 @@ launchurl="https://github.com/ao-libre/ao-autoupdate/releases/download"
 patchv="$(wget -q -O - 'https://github.com/ao-libre/ao-cliente/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1 | sed 's/\&quot.*//g')"
 launchv="$(wget -q -O - 'https://github.com/ao-libre/ao-autoupdate/releases/latest' | cut -d \" -f 2 | grep -o "tag/.*" | sed 's/tag\///g' | tail -n 1 | sed 's/\&quot.*//g')"
 vmcheck="$(cat /sys/class/dmi/id/product_name)"
+installer="aolibre-installer-${launchv}.exe"
 
 ## SIMPLIFICO LAS LLAMADAS A WINE Y WINETRICKS
 wine_ao () {
@@ -20,12 +21,12 @@ winets_ao () {
 }
 
 ## INSTALACION
-[ ! -e "aolibre-installer-${launchv}.exe" ] && wget "${launchurl}/${launchv}/aolibre-installer-${launchv}.exe"
+[ ! -e "${installer}" ] && wget "${launchurl}/${launchv}/${installer}"
 [ ! -e "${patchv}.zip" ] && wget "${patchurl}/${patchv}/${patchv}.zip"
 [ ! -d "${prefix_waol}" ] && mkdir -p "${prefix_waol}"
 
-wine_ao "aolibre-installer-${launchv}.exe"
-winets_ao mfc42 vcrun2013 vb6run riched20 riched30 directmusic native_oleaut32## DLLS
+wine_ao "${installer}"
+winets_ao mfc42 vcrun2013 vb6run riched20 riched30 directmusic native_oleaut32 ## DLL
 
 mv "${prefix_waol}/Init" INIT
 unzip -q -o "${patchv}.zip" -d "${prefix_waol}"
@@ -81,4 +82,4 @@ EOF
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/ao_winxp.reg"
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/d3dopengl.reg"
 WINEDEBUG=fixme-all WINEPREFIX="${prefix_ao}" wine regedit "${prefix_waol}/dlloverrides.reg"
-[ "${vmcheck}" = "VirtualBox" ] && winets_ao videomemorysize=512 # MEMORIA DE VIDEO DE LA VM
+[ "${vmcheck}" = "VirtualBox" ] && winets_ao videomemorysize=512 ## MEMORIA DE VIDEO DE LA VM
