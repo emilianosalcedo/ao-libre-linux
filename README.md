@@ -90,7 +90,7 @@ sudo apt install --reinstall winbind
 Si se necesita instalar o reinstalar alguna dependencia, posteriormente a la instalción de `wine`, [reinstalarlo](#Manual) para el correcto funcionamiento (utilizar `install.sh`).
 
 **Nota:**
-Para testing en otras distribiciones, además de las listadas en `packages.lst` y `packages-arch.lst` (en su mayoría librerías 32bits),
+Para testing en otras distribiciones, además de las listadas en `packages-debian.lst` y `packages-arch.lst` (en su mayoría librerías 32bits),
 se tienen que tener en cuenta las siguientes dependencias:
 
 + `winehq-stable`
