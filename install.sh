@@ -1,6 +1,6 @@
 #!/bin/sh
 
-dirtemp="${dirtemp:-$HOME/ao-libre-linux}"
+dirtemp="${dirtemp:-$HOME/.ao-libre-linux}"
 repo="${repo:-RenxoAr/ao-libre-linux}"
 remote="${remote:-https://github.com/${repo}.git}"
 branch="${branch:-master}"
