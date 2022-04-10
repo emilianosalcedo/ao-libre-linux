@@ -120,3 +120,9 @@ La configuración de _WINE_, la instalación del cliente y su configuración son
 ---
 
 Dedicado a toda la comunidad de Argentum Online.
+ winecfg
++ [ ] Generar output para interfaz amigable :slightly_smiling_face:
+
+---
+
+Dedicado a toda la comunidad de Argentum Online.
