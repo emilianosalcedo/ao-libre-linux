@@ -81,13 +81,13 @@ Launcher:
 ### Aclaraciones
 
 **Para distribuciones basadas en Debian:**
-Si tira un error de _SECUR32_ reinstalar el paquete winbind:
+Si devuelve un error de _SECUR32_ reinstalar el paquete `winbind`:
 
 ```shell
 sudo apt install --reinstall winbind
 ```
 
-Si tienen que instalar o reinstalar alguna dependencia, por favor reinstalen wine de nuevo (tiende a fallar sino)
+Si se necesita instalar o reinstalar alguna dependencia, posteriormente a la instalción de `wine`, [reinstalarlo](#Manual) para el correcto funcionamiento (utilizar `install.sh`).
 
 **Nota:**
 Para testing en otras distribiciones, además de las listadas en `packages.lst` y `packages-arch.lst` (en su mayoría librerías 32bits),
@@ -101,6 +101,7 @@ se tienen que tener en cuenta las siguientes dependencias:
 + `mono`
 
 La configuración de _WINE_, la instalación del cliente y su configuración son distro-agnósticas.
+Lo único que requiere modificación son las dependencias.
 
 ### TODO
 
@@ -115,12 +116,6 @@ La configuración de _WINE_, la instalación del cliente y su configuración son
 + [ ] Generalizar dependencias
 + [ ] Portear a distribuciones padre de las ya comprobadas (Arch Linux y Debian)
 + [ ] Reemplazar winetricks por winecfg
-+ [ ] Generar output para interfaz amigable :slightly_smiling_face:
-
----
-
-Dedicado a toda la comunidad de Argentum Online.
- winecfg
 + [ ] Generar output para interfaz amigable :slightly_smiling_face:
 
 ---
