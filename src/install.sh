@@ -13,12 +13,12 @@ printf "%s\n" "${separador}"
 texto_string "INSTALANDO"
 printf "%s\n" "${separador}"
 
-sh "${dirtemp}"/dependencies.sh
-sh "${dirtemp}"/wine-config.sh
-sh "${dirtemp}"/cliente-installer.sh
+sh "${dirtemp}"/src/dependencies.sh
+sh "${dirtemp}"/src/wine-config.sh
+sh "${dirtemp}"/src/cliente-installer.sh
 
 printf "%s\n" "${separador}"
 texto_string "FINALIZADO"
 printf "%s\n" "${separador}"
 
-sh "${dirtemp}"/run.sh
+sh "${dirtemp}"/src/run.sh
